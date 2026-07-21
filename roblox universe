@@ -1,0 +1,44 @@
+-- Roblox Universe Script Hub - Updated 2026
+print("Roblox Universe Hub Loaded!")
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/Library.lua"))()
+
+local Window = Library:CreateWindow({
+    Title = "Roblox Universe | Blox Fruits",
+    Center = true,
+    AutoShow = true,
+})
+
+local Tabs = {
+    Main = Window:AddTab("Main"),
+    BloxFruits = Window:AddTab("Blox Fruits"),
+    Universal = Window:AddTab("Universal"),
+}
+
+-- ==================== Main Tab ====================
+local Main = Tabs.Main
+Main:AddButton({Title = "Fly Script", Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/GrokRoblox/Fly/main/Fly.lua"))() end})
+Main:AddButton({Title = "Infinite Yield", Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))() end})
+
+-- ==================== Blox Fruits Tab ====================
+local BF = Tabs.BloxFruits
+BF:AddButton({
+    Title = "Auto Farm Level",
+    Description = "اتو فارم ساده",
+    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/GrokRoblox/BloxFruits/main/AutoFarm.lua"))() end
+})
+BF:AddButton({
+    Title = "Auto Sea",
+    Description = "اتو سی",
+    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/GrokRoblox/BloxFruits/main/AutoSea.lua"))() end
+})
+BF:AddToggle({Title = "Auto Quest", Default = false, Callback = function(v) print("Auto Quest:", v) end})
+BF:AddButton({Title = "Fruit Finder", Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/GrokRoblox/BloxFruits/main/Fruit.lua"))() end})
+
+-- ==================== Universal Tab ====================
+local Uni = Tabs.Universal
+Uni:AddButton({Title = "ESP Players", Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/GrokRoblox/ESP/main/ESP.lua"))() end})
+Uni:AddButton({Title = "Noclip", Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/GrokRoblox/Noclip/main/Noclip.lua"))() end})
+Uni:AddSlider({Title = "WalkSpeed", Default = 16, Min = 16, Max = 300, Callback = function(v) game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v end})
+
+print("✅ Roblox Universe Hub آماده شد! از Blox Fruits لذت ببر")
