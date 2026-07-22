@@ -1,0 +1,41 @@
+print("🚀 Robloxuniverse Auto Farm Loaded by ZIZKMZ")
+
+_G.AutoFarm = true
+_G.FarmRange = 100
+
+local player = game.Players.LocalPlayer
+local RunService = game:GetService("RunService")
+
+spawn(function()
+    while _G.AutoFarm do
+        RunService.Heartbeat:Wait()
+        
+        local character = player.Character
+        if not character or not character:FindFirstChild("HumanoidRootPart") then continue end
+        
+        local root = character.HumanoidRootPart
+        
+        -- پیدا کردن نزدیک‌ترین دشمن
+        local nearest, dist = nil, math.huge
+        for _, enemy in pairs(workspace.Enemies:GetChildren()) do
+            if enemy:FindFirstChild("Humanoid") and enemy.Humanoid.Health > 0 and enemy:FindFirstChild("HumanoidRootPart") then
+                local d = (root.Position - enemy.HumanoidRootPart.Position).Magnitude
+                if d < dist and d < _G.FarmRange then
+                    dist = d
+                    nearest = enemy
+                end
+            end
+        end
+        
+        if nearest then
+            root.CFrame = nearest.HumanoidRootPart.CFrame * CFrame.new(0, 10, 0)
+            
+            -- Fast Attack
+            local vu = game:GetService("VirtualUser")
+            vu:CaptureController()
+            vu:Button1Down(Vector2.new(0,0))
+        end
+    end
+end)
+
+print("✅ Auto Farm فعال شد! برای خاموش کردن: _G.AutoFarm = false")
